@@ -9,7 +9,12 @@ namespace SqlBackend.Controllers
   [Route("api/[controller]")]
   public class SubscribersController : ControllerBase
   {
-    private readonly MockSqlBackendRepo _repository = new MockSqlBackendRepo();
+    private readonly ISqlBackendRepository _repository;
+
+    public SubscribersController(ISqlBackendRepository repository)
+    {
+      _repository = repository;
+    }
 
     [HttpGet]
     public ActionResult<IEnumerable<Subscriber>> GetAllSubscribers()

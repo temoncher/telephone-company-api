@@ -27,9 +27,17 @@ namespace SqlBackend.Controllers
     [HttpPost]
     public ActionResult<int> CreateDatabase()
     {
-      int what = _repository.CreateDatabase();
+      int numberOfAffectedRows = _repository.CreateDatabase();
 
-      return Ok(what);
+      return Ok(numberOfAffectedRows);
+    }
+
+    [HttpDelete]
+    public ActionResult<int> DropDatabase()
+    {
+      int numberOfAffectedRows = _repository.DropDatabase();
+
+      return Ok(numberOfAffectedRows);
     }
   }
 }

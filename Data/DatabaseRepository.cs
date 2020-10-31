@@ -29,5 +29,13 @@ namespace SqlBackend.Data
 
       return numberOfAffectedRows;
     }
+
+    public int DropDatabase()
+    {
+      string script = ScriptsUtils.GetSqlScript("Databases\\DropDatabase.sql");
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
+
+      return numberOfAffectedRows;
+    }
   }
 }

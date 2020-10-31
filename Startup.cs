@@ -27,6 +27,13 @@ namespace SqlBackend
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddCors((options) => options.AddPolicy("NoPolicy", builder =>
+      {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+      }));
+
       services.AddDbContext<SubscriberContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
 
@@ -43,6 +50,8 @@ namespace SqlBackend
       {
         app.UseDeveloperExceptionPage();
       }
+
+      app.UseCors("NoPolicy");
 
       app.UseHttpsRedirection();
 

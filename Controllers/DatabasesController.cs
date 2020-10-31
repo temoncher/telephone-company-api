@@ -23,5 +23,13 @@ namespace SqlBackend.Controllers
 
       return Ok(databases);
     }
+
+    [HttpPost]
+    public ActionResult<int> CreateDatabase()
+    {
+      int what = _repository.CreateDatabase();
+
+      return Ok(what);
+    }
   }
 }

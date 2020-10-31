@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using SqlBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using SqlBackend.Models;
+using SqlBackend.Utils;
 
 namespace SqlBackend.Data
 {
@@ -16,11 +17,17 @@ namespace SqlBackend.Data
 
     public IEnumerable<Database> GetAllDatabases()
     {
-      string path = System.IO.Path.GetFullPath("Scripts\\Databases\\GetAllDatabases.sql");
-      FileInfo file = new FileInfo(path);
-      string script = file.OpenText().ReadToEnd();
+      string script = ScriptsUtils.GetSqlScript("Databases\\GetAllDatabases.sql");
 
       return _context.Databases.FromSqlRaw(script);
+    }
+
+    public int CreateDatabase()
+    {
+      string script = ScriptsUtils.GetSqlScript("Databases\\CreateDatabase.sql");
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
+
+      return numberOfAffectedRows;
     }
   }
 }

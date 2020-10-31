@@ -3,9 +3,9 @@ using SqlBackend.Models;
 
 namespace SqlBackend.Data
 {
-  public class SqlBackendContext : DbContext
+  public class SubscriberContext : DbContext
   {
-    public SqlBackendContext(DbContextOptions<SqlBackendContext> opt) : base(opt) { }
+    public SubscriberContext(DbContextOptions<SubscriberContext> opt) : base(opt) { }
 
     public DbSet<Subscriber> Subsrcibers { get; set; }
   }

@@ -3,7 +3,7 @@ using SqlBackend.Models;
 
 namespace SqlBackend.Data
 {
-  public class MockSqlBackendRepo : ISqlBackendRepository
+  public class MockSubscriberRepo : ISubscriberRepository
   {
     public IEnumerable<Subscriber> GetAllSubscribers()
     {

@@ -9,9 +9,9 @@ namespace SqlBackend.Controllers
   [Route("api/[controller]")]
   public class SubscribersController : ControllerBase
   {
-    private readonly ISqlBackendRepository _repository;
+    private readonly ISubscriberRepository _repository;
 
-    public SubscribersController(ISqlBackendRepository repository)
+    public SubscribersController(ISubscriberRepository repository)
     {
       _repository = repository;
     }

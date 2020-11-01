@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace SqlBackend.Models
 {
   public class Database

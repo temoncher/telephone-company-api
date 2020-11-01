@@ -39,7 +39,7 @@ namespace SqlBackend
 
       services.AddControllers();
 
-      services.AddScoped<ISubscriberRepository, MockSubscriberRepo>();
+      services.AddScoped<ISubscriberRepository, SubscriberRepository>();
       services.AddScoped<IDatabaseRepository, DatabaseRepository>();
     }
 

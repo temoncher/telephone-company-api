@@ -5,14 +5,19 @@ namespace SqlBackend.Models
   public class Subscriber
   {
     [Key]
-    public string Id { get; set; }
+    public int subscriber_id { get; set; }
     [Required]
-    public string Inn { get; set; }
+    public int organisation_id { get; set; }
     [Required]
-    public string Adress { get; set; }
+    public int account_id { get; set; }
     [Required]
-    public string OrganistaionName { get; set; }
+    public int inn { get; set; }
     [Required]
-    public string Account { get; set; }
+    public string adress { get; set; }
+    [Required]
+    public string first_name { get; set; }
+    [Required]
+    public string last_name { get; set; }
+    public string patronymic { get; set; }
   }
 }

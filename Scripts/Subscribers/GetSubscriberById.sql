@@ -1,5 +1,8 @@
-USE TelephoneCompany;
+USE [telephone_company];
 
-SELECT *
-FROM subscribers
-WHERE subscriber_id = @subscriberId
+SELECT
+  *
+FROM
+  [subscribers]
+WHERE
+  [subscriber_id] = @subscriberId

@@ -1,3 +1,3 @@
-USE TelephoneCompany;
+USE [telephone_company];
 
-DROP TABLE subscribers;
+DROP TABLE [subscribers];

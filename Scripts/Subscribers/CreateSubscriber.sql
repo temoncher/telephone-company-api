@@ -1,16 +1,17 @@
-USE TelephoneCompany;
+USE [telephone_company];
 
-INSERT INTO subscribers
-    (
-    organisation_id,
-    account_id,
-    inn,
-    first_name,
-    last_name,
-    patronymic,
-    adress
+INSERT INTO
+    [subscribers] (
+        [organisation_id],
+        [account_id],
+        [inn],
+        [first_name],
+        [last_name],
+        [patronymic],
+        [adress]
     )
-VALUES(
+VALUES
+    (
         @organisationId,
         @accountId,
         @inn,
@@ -18,4 +19,4 @@ VALUES(
         @lastName,
         @patronymic,
         @adress
-);
+    );

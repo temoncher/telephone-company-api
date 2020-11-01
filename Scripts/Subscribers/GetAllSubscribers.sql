@@ -1,4 +1,6 @@
-USE TelephoneCompany;
+USE [telephone_company];
 
-SELECT *
-FROM subscribers
+SELECT
+  *
+FROM
+  [subscribers]

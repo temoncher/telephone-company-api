@@ -1,1 +1,1 @@
-CREATE DATABASE TelephoneCompany;
+CREATE DATABASE [telephone_company];

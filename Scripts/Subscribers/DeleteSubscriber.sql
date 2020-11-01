@@ -1,4 +1,6 @@
-USE TelephoneCompany;
+USE [telephone_company];
 
-DELETE FROM subscribers
-WHERE subscriber_id = @subscriberId
+DELETE FROM
+  [subscribers]
+WHERE
+  [subscriber_id] = @subscriberId

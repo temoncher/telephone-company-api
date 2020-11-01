@@ -1,1 +1,1 @@
-DROP DATABASE TelephoneCompany;
+DROP DATABASE [telephone_company];

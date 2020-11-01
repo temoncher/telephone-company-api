@@ -11,11 +11,5 @@ namespace SqlBackend.Data
     }
 
     public DbSet<Database> Databases { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-      modelBuilder.Entity<Database>()
-          .HasNoKey();
-    }
   }
 }

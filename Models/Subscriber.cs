@@ -13,11 +13,10 @@ namespace SqlBackend.Models
     [Required]
     public int inn { get; set; }
     [Required]
-    public string adress { get; set; }
-    [Required]
     public string first_name { get; set; }
     [Required]
     public string last_name { get; set; }
     public string patronymic { get; set; }
+    public string adress { get; set; }
   }
 }

@@ -1,13 +1,21 @@
 USE TelephoneCompany;
 
 INSERT INTO subscribers
+    (
+    organisation_id,
+    account_id,
+    inn,
+    first_name,
+    last_name,
+    patronymic,
+    adress
+    )
 VALUES(
-    @subscriberId,
-    @organisationId,
-    @accountId,
-    @inn,
-    @adress,
-    @firstName,
-    @lastName,
-    @patronymic
+        @organisationId,
+        @accountId,
+        @inn,
+        @firstName,
+        @lastName,
+        @patronymic,
+        @adress
 );

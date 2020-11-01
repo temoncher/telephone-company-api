@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using SqlBackend.Models;
 
 namespace SqlBackend.Data
@@ -8,7 +9,9 @@ namespace SqlBackend.Data
     int CreateSubscribersTable();
     int DropSubscribersTable();
     int CreateSubscriber(Subscriber subscriber);
+    int UpdateSubscriber(Subscriber subscriber);
+    int DeleteSubscriber(int id);
     IEnumerable<Subscriber> GetAllSubscribers();
-    Subscriber GetSubscriberById(int id);
+    Task<Subscriber> GetSubscriberById(int id);
   }
 }

@@ -41,18 +41,8 @@ namespace SqlBackend.Controllers
     }
 
     [HttpPut]
-    public ActionResult<int> CreateSubscriber()
+    public ActionResult<int> CreateSubscriber(Subscriber subscriber)
     {
-      var subscriber = new Subscriber
-      {
-        subscriber_id = 2,
-        organisation_id = 3,
-        account_id = 124,
-        inn = 124,
-        adress = "Some adress",
-        first_name = "Artem",
-        last_name = "Baranov"
-      };
       var numberOfAffectedRows = _repository.CreateSubscriber(subscriber);
 
       return Ok(numberOfAffectedRows);
@@ -64,7 +54,22 @@ namespace SqlBackend.Controllers
       var subscriber = _repository.GetSubscriberById(id);
 
       return Ok(subscriber);
+    }
 
+    [HttpPost("{id}")]
+    public ActionResult<Subscriber> UpdateSubscriber(int id, Subscriber subscriber)
+    {
+      var numberOfAffectedRows = _repository.UpdateSubscriber(subscriber);
+
+      return Ok(numberOfAffectedRows);
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult<Subscriber> DeleteSubscriber(int id)
+    {
+      var numberOfAffectedRows = _repository.DeleteSubscriber(id);
+
+      return Ok(numberOfAffectedRows);
     }
   }
 }

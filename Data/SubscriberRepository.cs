@@ -4,6 +4,7 @@ using SqlBackend.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Threading.Tasks;
 
 namespace SqlBackend.Data
 {
@@ -35,11 +36,57 @@ namespace SqlBackend.Data
     public int CreateSubscriber(Subscriber subscriber)
     {
       string script = ScriptsUtils.GetSqlScript("Subscribers\\CreateSubscriber.sql");
+      var organisationId = new SqlParameter("@organisationId", subscriber.organisation_id);
+      var accountId = new SqlParameter("@accountId", subscriber.account_id);
+      var inn = new SqlParameter("@inn", subscriber.inn);
+      var adress = new SqlParameter("@adress", string.IsNullOrEmpty(subscriber.adress) ? SqlString.Null : subscriber.adress);
+      var firstName = new SqlParameter("@firstName", subscriber.first_name);
+      var lastName = new SqlParameter("@lastName", subscriber.last_name);
+      var patronymic = new SqlParameter("@patronymic", string.IsNullOrEmpty(subscriber.patronymic) ? SqlString.Null : subscriber.patronymic);
+
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
+        script,
+        organisationId,
+        accountId,
+        inn,
+        firstName,
+        lastName,
+        patronymic,
+        adress
+      );
+
+      return numberOfAffectedRows;
+    }
+
+    public IEnumerable<Subscriber> GetAllSubscribers()
+    {
+      string script = ScriptsUtils.GetSqlScript("Subscribers\\GetAllSubscribers.sql");
+      IEnumerable<Subscriber> subscribers = _context.Subsrcibers.FromSqlRaw(script);
+
+      return subscribers;
+    }
+
+    public async Task<Subscriber> GetSubscriberById(int id)
+    {
+      string script = ScriptsUtils.GetSqlScript("Subscribers\\GetSubscriberById.sql");
+      var subscriberId = new SqlParameter("@subscriberId", id);
+
+      Subscriber subscriber = await _context.Subsrcibers.FromSqlRaw(
+        script,
+        subscriberId
+      ).FirstAsync();
+
+      return subscriber;
+    }
+
+    public int UpdateSubscriber(Subscriber subscriber)
+    {
+      string script = ScriptsUtils.GetSqlScript("Subscribers\\UpdateSubscriber.sql");
       var subscriberId = new SqlParameter("@subscriberId", subscriber.subscriber_id);
       var organisationId = new SqlParameter("@organisationId", subscriber.organisation_id);
       var accountId = new SqlParameter("@accountId", subscriber.account_id);
       var inn = new SqlParameter("@inn", subscriber.inn);
-      var adress = new SqlParameter("@adress", subscriber.adress);
+      var adress = new SqlParameter("@adress", string.IsNullOrEmpty(subscriber.adress) ? SqlString.Null : subscriber.adress);
       var firstName = new SqlParameter("@firstName", subscriber.first_name);
       var lastName = new SqlParameter("@lastName", subscriber.last_name);
       var patronymic = new SqlParameter("@patronymic", string.IsNullOrEmpty(subscriber.patronymic) ? SqlString.Null : subscriber.patronymic);
@@ -59,28 +106,17 @@ namespace SqlBackend.Data
       return numberOfAffectedRows;
     }
 
-    public IEnumerable<Subscriber> GetAllSubscribers()
+    public int DeleteSubscriber(int id)
     {
-      string script = ScriptsUtils.GetSqlScript("Subscribers\\GetAllSubscribers.sql");
-      IEnumerable<Subscriber> subscribers = _context.Subsrcibers.FromSqlRaw(script);
+      string script = ScriptsUtils.GetSqlScript("Subscribers\\DeleteSubscriber.sql");
+      var subscriberId = new SqlParameter("@subscriberId", id);
 
-      return subscribers;
-    }
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
+        script,
+        subscriberId
+      );
 
-    public Subscriber GetSubscriberById(int id)
-    {
-      var subscriber = new Subscriber
-      {
-        subscriber_id = id,
-        organisation_id = 123,
-        account_id = 12,
-        inn = 528590256,
-        adress = "adress",
-        first_name = "bruh",
-        last_name = "joe",
-      };
-
-      return subscriber;
+      return numberOfAffectedRows;
     }
   }
 }

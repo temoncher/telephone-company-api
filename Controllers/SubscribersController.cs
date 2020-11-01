@@ -16,22 +16,6 @@ namespace SqlBackend.Controllers
       _repository = repository;
     }
 
-    [HttpPost]
-    public ActionResult<int> CreateSubscribersTable()
-    {
-      var numberOfAffectedRows = _repository.CreateSubscribersTable();
-
-      return Ok(numberOfAffectedRows);
-    }
-
-    [HttpDelete]
-    public ActionResult<int> DropSubscribersTable()
-    {
-      var numberOfAffectedRows = _repository.DropSubscribersTable();
-
-      return Ok(numberOfAffectedRows);
-    }
-
     [HttpGet]
     public ActionResult<IEnumerable<Subscriber>> GetAllSubscribers()
     {

@@ -22,17 +22,7 @@ namespace SqlBackend.Data
       throw new System.NotImplementedException();
     }
 
-    public int CreateOrganisationsTable()
-    {
-      throw new System.NotImplementedException();
-    }
-
     public int DeleteOrganisation(int id)
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public int DropOrganisationsTable()
     {
       throw new System.NotImplementedException();
     }

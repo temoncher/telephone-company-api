@@ -6,8 +6,6 @@ namespace SqlBackend.Data
 {
   public interface IOrganisationRepository
   {
-    int CreateOrganisationsTable();
-    int DropOrganisationsTable();
     int CreateOrganisation(Organisation organisation);
     int UpdateOrganisation(Organisation organisation);
     int DeleteOrganisation(int id);

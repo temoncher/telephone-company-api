@@ -11,8 +11,6 @@ namespace SqlBackend.Models
     [Required]
     public int organisation_id { get; set; }
     [Required]
-    public int account_id { get; set; }
-    [Required]
     public int inn { get; set; }
     [Required]
     [MaxLength(30)]

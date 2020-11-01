@@ -17,27 +17,10 @@ namespace SqlBackend.Data
       _context = context;
     }
 
-    public int CreateSubscribersTable()
-    {
-      string script = ScriptsUtils.GetSqlScript("Subscribers\\CreateSubscribersTable.sql");
-      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
-
-      return numberOfAffectedRows;
-    }
-
-    public int DropSubscribersTable()
-    {
-      string script = ScriptsUtils.GetSqlScript("Subscribers\\DropSubscribersTable.sql");
-      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
-
-      return numberOfAffectedRows;
-    }
-
     public int CreateSubscriber(Subscriber subscriber)
     {
       string script = ScriptsUtils.GetSqlScript("Subscribers\\CreateSubscriber.sql");
       var organisationId = new SqlParameter("@organisationId", subscriber.organisation_id);
-      var accountId = new SqlParameter("@accountId", subscriber.account_id);
       var inn = new SqlParameter("@inn", subscriber.inn);
       var adress = new SqlParameter("@adress", string.IsNullOrEmpty(subscriber.adress) ? SqlString.Null : subscriber.adress);
       var firstName = new SqlParameter("@firstName", subscriber.first_name);
@@ -47,7 +30,6 @@ namespace SqlBackend.Data
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
         script,
         organisationId,
-        accountId,
         inn,
         firstName,
         lastName,
@@ -84,7 +66,6 @@ namespace SqlBackend.Data
       string script = ScriptsUtils.GetSqlScript("Subscribers\\UpdateSubscriber.sql");
       var subscriberId = new SqlParameter("@subscriberId", subscriber.subscriber_id);
       var organisationId = new SqlParameter("@organisationId", subscriber.organisation_id);
-      var accountId = new SqlParameter("@accountId", subscriber.account_id);
       var inn = new SqlParameter("@inn", subscriber.inn);
       var adress = new SqlParameter("@adress", string.IsNullOrEmpty(subscriber.adress) ? SqlString.Null : subscriber.adress);
       var firstName = new SqlParameter("@firstName", subscriber.first_name);
@@ -95,7 +76,6 @@ namespace SqlBackend.Data
         script,
         subscriberId,
         organisationId,
-        accountId,
         inn,
         adress,
         firstName,

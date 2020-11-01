@@ -6,8 +6,6 @@ namespace SqlBackend.Data
 {
   public interface ISubscriberRepository
   {
-    int CreateSubscribersTable();
-    int DropSubscribersTable();
     int CreateSubscriber(Subscriber subscriber);
     int UpdateSubscriber(Subscriber subscriber);
     int DeleteSubscriber(int id);

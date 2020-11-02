@@ -69,7 +69,7 @@ CREATE TABLE [transactions] (
   [transaction_type_id] INT NOT NULL FOREIGN KEY REFERENCES [transaction_types](transaction_type_id),
   [account_id] INT NOT NULL FOREIGN KEY REFERENCES [accounts](account_id),
   [amount] INT NOT NULL,
-  [timestamp] TIMESTAMP NOT NULL,
+  [timestamp] TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );
 
 GO

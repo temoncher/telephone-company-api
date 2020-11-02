@@ -7,6 +7,6 @@ namespace SqlBackend.Data
   {
     public OrganisationContext(DbContextOptions<OrganisationContext> opt) : base(opt) { }
 
-    public DbSet<Organisation> Subsrcibers { get; set; }
+    public DbSet<Organisation> Organisations { get; set; }
   }
 }

@@ -19,27 +19,64 @@ namespace SqlBackend.Data
 
     public int CreateOrganisation(Organisation organisation)
     {
-      throw new System.NotImplementedException();
+      string script = ScriptsUtils.GetSqlScript("Organisations\\CreateOrganisation.sql");
+      var name = new SqlParameter("@name", organisation.name);
+
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
+        script,
+        name
+      );
+
+      return numberOfAffectedRows;
     }
 
     public int DeleteOrganisation(int id)
     {
-      throw new System.NotImplementedException();
+      string script = ScriptsUtils.GetSqlScript("Organisations\\DeleteOrganisation.sql");
+      var organisationId = new SqlParameter("@organisationId", id);
+
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
+        script,
+        organisationId
+      );
+
+      return numberOfAffectedRows;
     }
 
     public IEnumerable<Organisation> GetAllOrganisations()
     {
-      throw new System.NotImplementedException();
+      string script = ScriptsUtils.GetSqlScript("Organisations\\GetAllOrganisations.sql");
+      IEnumerable<Organisation> organisations = _context.Organisations.FromSqlRaw(script);
+
+      return organisations;
     }
 
-    public Task<Organisation> GetOrganisationById(int id)
+    public async Task<Organisation> GetOrganisationById(int id)
     {
-      throw new System.NotImplementedException();
+      string script = ScriptsUtils.GetSqlScript("Organisations\\GetOrganisationById.sql");
+      var organisationId = new SqlParameter("@organisationId", id);
+
+      Organisation organisation = await _context.Organisations.FromSqlRaw(
+        script,
+        organisationId
+      ).FirstAsync();
+
+      return organisation;
     }
 
     public int UpdateOrganisation(Organisation organisation)
     {
-      throw new System.NotImplementedException();
+      string script = ScriptsUtils.GetSqlScript("Organisations\\UpdateOrganisation.sql");
+      var organisationId = new SqlParameter("@organisationId", organisation.organisation_id);
+      var name = new SqlParameter("@name", organisation.name);
+
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
+        script,
+        organisationId,
+        name
+      );
+
+      return numberOfAffectedRows;
     }
   }
 }

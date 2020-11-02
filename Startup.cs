@@ -36,11 +36,13 @@ namespace SqlBackend
 
       services.AddDbContext<SubscriberContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
+      services.AddDbContext<OrganisationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
 
       services.AddControllers();
 
       services.AddScoped<ISubscriberRepository, SubscriberRepository>();
       services.AddScoped<IDatabaseRepository, DatabaseRepository>();
+      services.AddScoped<IOrganisationRepository, OrganisationRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

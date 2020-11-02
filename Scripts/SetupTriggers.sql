@@ -41,7 +41,7 @@ INSERT
   UPDATE
     [accounts]
   SET
-    [balance] = (
+    [balance] = [accounts].[balance] + (
       SELECT [@newInserted].[income] - [@newInserted].[loss]
   FROM @newInserted
   WHERE [accounts].[account_id] = [@newInserted].[account_id]

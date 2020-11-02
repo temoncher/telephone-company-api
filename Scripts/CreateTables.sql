@@ -117,3 +117,19 @@ CREATE TABLE [daytime_prices]
 );
 
 GO
+
+-- Create Calls table
+CREATE TABLE [calls]
+(
+  [call_id] INT IDENTITY(1,1) PRIMARY KEY,
+  [subscriber_id] INT NOT NULL,
+  [daytime_id] INT,
+  [locality_id] INT,
+  [duration] INT NOT NULL,
+  [timestamp] DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(subscriber_id) REFERENCES [subscribers](subscriber_id) ON DELETE CASCADE,
+  FOREIGN KEY(daytime_id) REFERENCES [daytimes](daytime_id) ON DELETE SET NULL,
+  FOREIGN KEY(locality_id) REFERENCES [localities](locality_id) ON DELETE SET NULL,
+);
+
+GO

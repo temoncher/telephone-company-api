@@ -93,3 +93,14 @@ CREATE TABLE [localities]
 );
 
 GO
+
+-- Create Prices table
+CREATE TABLE [prices]
+(
+  [price_id] INT IDENTITY(1, 1) PRIMARY KEY,
+  [locality_id] INT NOT NULL,
+  [title] NVARCHAR(50) NOT NULL,
+  FOREIGN KEY(locality_id) REFERENCES [localities](locality_id) ON DELETE CASCADE
+);
+
+GO

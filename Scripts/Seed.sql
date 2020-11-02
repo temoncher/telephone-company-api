@@ -102,7 +102,20 @@ INSERT INTO
 VALUES
   (N'Ярославль'),
   (N'Москва'),
-  (N'Brooklyn'),
-  (N'Disney Land');
+  ('Brooklyn'),
+  ('Disney Land');
+
+GO
+
+-- Seed Prices table
+INSERT INTO
+  [prices]
+  ([locality_id], [title])
+VALUES
+  (1, 'Best price'),
+  (1, N'Прайс Надежный'),
+  (2, N'Москва не ждет'),
+  (3, 'Brooklyn Night'),
+  (4, 'Disney Land');
 
 GO

@@ -24,6 +24,14 @@ namespace SqlBackend.Controllers
       return Ok(daytimes);
     }
 
+    [HttpGet("{id}")]
+    public ActionResult<IEnumerable<Daytime>> GetDaytimeById(int id)
+    {
+      var daytime = _repository.GetDaytimeById(id);
+
+      return Ok(daytime);
+    }
+
     [HttpPost]
     public ActionResult<int> CreateDaytime(Daytime daytime)
     {
@@ -32,7 +40,7 @@ namespace SqlBackend.Controllers
       return Ok(numberOfAffectedRows);
     }
 
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public ActionResult<int> UpdateDaytime(int id, Daytime daytime)
     {
       int numberOfAffectedRows = _repository.UpdateDaytime(id, daytime);

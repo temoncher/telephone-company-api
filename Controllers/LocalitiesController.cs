@@ -32,7 +32,7 @@ namespace SqlBackend.Controllers
       return Ok(numberOfAffectedRows);
     }
 
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public ActionResult<int> UpdateLocality(int id, Locality locality)
     {
       int numberOfAffectedRows = _repository.UpdateLocality(id, locality);

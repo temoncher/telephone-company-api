@@ -40,7 +40,7 @@ namespace SqlBackend.Controllers
       return Ok(transactionType);
     }
 
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public ActionResult<int> UpdateTransactionType(int id, TransactionType transactionType)
     {
       int numberOfAffectedRows = _repository.UpdateTransactionType(id, transactionType);

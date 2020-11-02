@@ -35,6 +35,7 @@ namespace SqlBackend
       services.AddDbContext<DaytimeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<LocalityContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<PriceContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
+      services.AddDbContext<DaytimePriceContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
 
       services.AddControllers();
 
@@ -46,6 +47,7 @@ namespace SqlBackend
       services.AddScoped<IDaytimeRepository, DaytimeRepository>();
       services.AddScoped<ILocalityRepository, LocalityRepository>();
       services.AddScoped<IPriceRepository, PriceRepository>();
+      services.AddScoped<IDaytimePriceRepository, DaytimePriceRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

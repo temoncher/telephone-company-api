@@ -32,7 +32,7 @@ namespace SqlBackend.Controllers
       return Ok(numberOfAffectedRows);
     }
 
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public ActionResult<int> UpdatePrice(int id, Price price)
     {
       int numberOfAffectedRows = _repository.UpdatePrice(id, price);

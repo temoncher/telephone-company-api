@@ -40,7 +40,7 @@ namespace SqlBackend.Controllers
       return Ok(subscriber);
     }
 
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public ActionResult<Subscriber> UpdateSubscriber(int id, Subscriber subscriber)
     {
       var numberOfAffectedRows = _repository.UpdateSubscriber(id, subscriber);

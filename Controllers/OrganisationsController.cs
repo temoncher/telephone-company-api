@@ -32,7 +32,7 @@ namespace SqlBackend.Controllers
       return Ok(numberOfAffectedRows);
     }
 
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public ActionResult<int> UpdateOrganisation(int id, Organisation organisation)
     {
       int numberOfAffectedRows = _repository.UpdateOrganisation(id, organisation);

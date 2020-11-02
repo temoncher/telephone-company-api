@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using SqlBackend.Data;
 
 namespace SqlBackend
@@ -40,6 +33,7 @@ namespace SqlBackend
       services.AddDbContext<TransactionTypeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<TransactionContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<DaytimeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
+      services.AddDbContext<LocalityContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
 
       services.AddControllers();
 
@@ -49,6 +43,7 @@ namespace SqlBackend
       services.AddScoped<ITransactionTypeRepository, TransactionTypeRepository>();
       services.AddScoped<ITransactionRepository, TransactionRepository>();
       services.AddScoped<IDaytimeRepository, DaytimeRepository>();
+      services.AddScoped<ILocalityRepository, LocalityRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

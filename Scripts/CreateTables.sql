@@ -70,7 +70,7 @@ CREATE TABLE [transactions]
   [account_id] INT NOT NULL,
   [amount] INT NOT NULL,
   [timestamp] DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY(transaction_type_id) REFERENCES [transaction_types](transaction_type_id) ON DELETE SET NULL,
+  FOREIGN KEY(transaction_type_id) REFERENCES [transaction_types](transaction_type_id) ON DELETE CASCADE,
   FOREIGN KEY(account_id) REFERENCES [accounts](account_id) ON DELETE CASCADE
 );
 

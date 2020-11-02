@@ -61,10 +61,10 @@ namespace SqlBackend.Data
       return subscriber;
     }
 
-    public int UpdateSubscriber(Subscriber subscriber)
+    public int UpdateSubscriber(int id, Subscriber subscriber)
     {
       string script = ScriptsUtils.GetSqlScript("Subscribers\\UpdateSubscriber.sql");
-      var subscriberId = new SqlParameter("@subscriberId", subscriber.subscriber_id);
+      var subscriberId = new SqlParameter("@subscriberId", id);
       var organisationId = new SqlParameter("@organisationId", subscriber.organisation_id);
       var inn = new SqlParameter("@inn", subscriber.inn);
       var adress = new SqlParameter("@adress", string.IsNullOrEmpty(subscriber.adress) ? SqlString.Null : subscriber.adress);

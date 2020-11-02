@@ -3,7 +3,6 @@ using SqlBackend.Models;
 using SqlBackend.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Threading.Tasks;
 
 namespace SqlBackend.Data
@@ -64,10 +63,10 @@ namespace SqlBackend.Data
       return organisation;
     }
 
-    public int UpdateOrganisation(Organisation organisation)
+    public int UpdateOrganisation(int id, Organisation organisation)
     {
       string script = ScriptsUtils.GetSqlScript("Organisations\\UpdateOrganisation.sql");
-      var organisationId = new SqlParameter("@organisationId", organisation.organisation_id);
+      var organisationId = new SqlParameter("@organisationId", id);
       var name = new SqlParameter("@name", organisation.name);
 
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(

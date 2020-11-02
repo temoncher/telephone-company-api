@@ -68,7 +68,18 @@ FROM
 END;
 
 GO
-  -- Seed Organisations table
+;
+
+-- Create TransactionTypes table
+CREATE TABLE [transaction_types] (
+  [transaction_type_id] INT IDENTITY(1, 1) PRIMARY KEY,
+  [title] NVARCHAR(50) NOT NULL,
+);
+
+GO
+;
+
+-- Seed Organisations table
 INSERT INTO
   [organisations] ([name])
 VALUES
@@ -112,3 +123,15 @@ VALUES
     NULL,
     'Disney Land'
   );
+
+-- No need to seed Accounts because they will be generated on trigger
+-- Seed TransactionTypes table
+INSERT INTO
+  [transaction_types] ([title])
+VALUES
+  (N'Утро'),
+  (N'День'),
+  (N'Ночь');
+
+GO
+;

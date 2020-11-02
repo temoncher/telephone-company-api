@@ -7,7 +7,7 @@ namespace SqlBackend.Data
   public interface ISubscriberRepository
   {
     int CreateSubscriber(Subscriber subscriber);
-    int UpdateSubscriber(Subscriber subscriber);
+    int UpdateSubscriber(int id, Subscriber subscriber);
     int DeleteSubscriber(int id);
     IEnumerable<Subscriber> GetAllSubscribers();
     Task<Subscriber> GetSubscriberById(int id);

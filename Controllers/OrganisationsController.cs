@@ -17,7 +17,7 @@ namespace SqlBackend.Controllers
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Database>> GetAllOrganisations()
+    public ActionResult<IEnumerable<Organisation>> GetAllOrganisations()
     {
       var organisations = _repository.GetAllOrganisations();
 
@@ -35,7 +35,7 @@ namespace SqlBackend.Controllers
     [HttpPost("{id}")]
     public ActionResult<int> UpdateOrganisation(int id, Organisation organisation)
     {
-      int numberOfAffectedRows = _repository.UpdateOrganisation(organisation);
+      int numberOfAffectedRows = _repository.UpdateOrganisation(id, organisation);
 
       return Ok(numberOfAffectedRows);
     }

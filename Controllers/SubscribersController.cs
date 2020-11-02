@@ -43,7 +43,7 @@ namespace SqlBackend.Controllers
     [HttpPost("{id}")]
     public ActionResult<Subscriber> UpdateSubscriber(int id, Subscriber subscriber)
     {
-      var numberOfAffectedRows = _repository.UpdateSubscriber(subscriber);
+      var numberOfAffectedRows = _repository.UpdateSubscriber(id, subscriber);
 
       return Ok(numberOfAffectedRows);
     }

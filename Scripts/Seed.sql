@@ -1,10 +1,10 @@
 USE [telephone_company]
 GO
-;
 
 -- Seed Organisations table
 INSERT INTO
-  [organisations] ([name])
+  [organisations]
+  ([name])
 VALUES
   (N'ЯрГУ им. П.Г. Демидова'),
   (N'Тензор'),
@@ -13,17 +13,17 @@ VALUES
   (N'Аквелон');
 
 GO
-;
 
 -- Seed Subscribers table
 INSERT INTO
-  [subscribers] (
-    [organisation_id],
-    [inn],
-    [first_name],
-    [last_name],
-    [patronymic],
-    [adress]
+  [subscribers]
+  (
+  [organisation_id],
+  [inn],
+  [first_name],
+  [last_name],
+  [patronymic],
+  [adress]
   )
 VALUES
   (3, 111, 'John', 'Doe', NULL, 'Brooklyn'),
@@ -47,23 +47,26 @@ VALUES
     'Disney Land'
   );
 
+GO
+
 -- No need to seed Accounts because they will be generated on trigger
 -- Seed TransactionTypes table
 INSERT INTO
-  [transaction_types] ([title])
+  [transaction_types]
+  ([title])
 VALUES
   ('INCOME'),
   ('LOSS');
 
 GO
-;
 
 -- Seed Transactions table
 INSERT INTO
-  [transactions] (
-    [transaction_type_id],
-    [account_id],
-    [amount]
+  [transactions]
+  (
+  [transaction_type_id],
+  [account_id],
+  [amount]
   )
 VALUES
   (1, 1, 100),
@@ -79,11 +82,11 @@ VALUES
   (1, 2, 815);
 
 GO
-;
 
 -- Seed Daytimes table
 INSERT INTO
-  [daytimes] ([title])
+  [daytimes]
+  ([title])
 VALUES
   (N'Утро'),
   (N'День'),
@@ -91,4 +94,15 @@ VALUES
   (N'Ночь');
 
 GO
-;
+
+-- Seed Localities table
+INSERT INTO
+  [localities]
+  ([name])
+VALUES
+  (N'Ярославль'),
+  (N'Москва'),
+  (N'Brooklyn'),
+  (N'Disney Land');
+
+GO

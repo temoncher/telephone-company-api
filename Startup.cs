@@ -38,6 +38,7 @@ namespace SqlBackend
       services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<OrganisationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
       services.AddDbContext<TransactionTypeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
+      services.AddDbContext<TransactionContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
 
       services.AddControllers();
 
@@ -45,6 +46,7 @@ namespace SqlBackend
       services.AddScoped<IDatabaseRepository, DatabaseRepository>();
       services.AddScoped<IOrganisationRepository, OrganisationRepository>();
       services.AddScoped<ITransactionTypeRepository, TransactionTypeRepository>();
+      services.AddScoped<ITransactionRepository, TransactionRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

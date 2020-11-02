@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SqlBackend.Models
@@ -12,8 +13,6 @@ namespace SqlBackend.Models
     public int account_id { get; set; }
     [Required]
     public int amount { get; set; }
-    [Required]
-    [Timestamp]
-    public byte[] timestamp { get; set; }
+    public DateTime timestamp { get; set; }
   }
 }

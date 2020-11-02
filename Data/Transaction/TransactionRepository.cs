@@ -25,6 +25,7 @@ namespace SqlBackend.Data
 
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
         script,
+        transactionTypeId,
         accountId,
         amount
       );

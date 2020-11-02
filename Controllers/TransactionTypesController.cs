@@ -32,6 +32,14 @@ namespace SqlBackend.Controllers
       return Ok(numberOfAffectedRows);
     }
 
+    [HttpGet("{id}")]
+    public ActionResult<IEnumerable<TransactionType>> GetTransactionTypeById(int id)
+    {
+      var transactionType = _repository.GetTransactionTypeById(id);
+
+      return Ok(transactionType);
+    }
+
     [HttpPost("{id}")]
     public ActionResult<int> UpdateTransactionType(int id, TransactionType transactionType)
     {

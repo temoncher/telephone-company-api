@@ -52,9 +52,31 @@ VALUES
 INSERT INTO
   [transaction_types] ([title])
 VALUES
-  (N'Утро'),
-  (N'День'),
-  (N'Ночь');
+  ('INCOME'),
+  ('LOSS');
+
+GO
+;
+
+-- Seed Transactions table
+INSERT INTO
+  [transactions] (
+    [transaction_type_id],
+    [account_id],
+    [amount]
+  )
+VALUES
+  (1, 1, 100),
+  (1, 1, 100),
+  (1, 1, 200),
+  (2, 1, 100),
+  (2, 3, 100),
+  (2, 3, 400),
+  (1, 4, 1500),
+  (1, 2, 10),
+  (2, 2, 300),
+  (2, 2, 500),
+  (1, 2, 815);
 
 GO
 ;

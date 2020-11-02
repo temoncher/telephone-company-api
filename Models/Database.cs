@@ -5,7 +5,7 @@ namespace SqlBackend.Models
   public class Database
   {
     [Key]
-    public string database_id { get; set; }
+    public int database_id { get; set; }
     public string name { get; set; }
   }
 }

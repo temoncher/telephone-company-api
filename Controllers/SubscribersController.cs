@@ -24,7 +24,7 @@ namespace SqlBackend.Controllers
       return Ok(subscribers);
     }
 
-    [HttpPut]
+    [HttpPost]
     public ActionResult<int> CreateSubscriber(Subscriber subscriber)
     {
       var numberOfAffectedRows = _repository.CreateSubscriber(subscriber);

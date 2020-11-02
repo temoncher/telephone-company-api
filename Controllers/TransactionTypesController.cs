@@ -24,7 +24,7 @@ namespace SqlBackend.Controllers
       return Ok(transactionTypes);
     }
 
-    [HttpPut]
+    [HttpPost]
     public ActionResult<int> CreateTransactionType(TransactionType transactionType)
     {
       int numberOfAffectedRows = _repository.CreateTransactionType(transactionType);

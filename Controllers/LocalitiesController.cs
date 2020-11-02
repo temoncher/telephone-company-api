@@ -24,7 +24,7 @@ namespace SqlBackend.Controllers
       return Ok(localitys);
     }
 
-    [HttpPut]
+    [HttpPost]
     public ActionResult<int> CreateLocality(Locality locality)
     {
       int numberOfAffectedRows = _repository.CreateLocality(locality);

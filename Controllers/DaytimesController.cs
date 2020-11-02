@@ -24,7 +24,7 @@ namespace SqlBackend.Controllers
       return Ok(daytimes);
     }
 
-    [HttpPut]
+    [HttpPost]
     public ActionResult<int> CreateDaytime(Daytime daytime)
     {
       int numberOfAffectedRows = _repository.CreateDaytime(daytime);

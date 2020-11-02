@@ -24,7 +24,7 @@ namespace SqlBackend.Controllers
       return Ok(organisations);
     }
 
-    [HttpPut]
+    [HttpPost]
     public ActionResult<int> CreateOrganisation(Organisation organisation)
     {
       int numberOfAffectedRows = _repository.CreateOrganisation(organisation);

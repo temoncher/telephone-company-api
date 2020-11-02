@@ -62,3 +62,15 @@ CREATE TABLE [transaction_types] (
 
 GO
 ;
+
+-- Create Transactions table
+CREATE TABLE [transactions] (
+  [transaction_id] INT IDENTITY(1, 1) PRIMARY KEY,
+  [transaction_type_id] INT NOT NULL FOREIGN KEY REFERENCES [transaction_types](transaction_type_id),
+  [account_id] INT NOT NULL FOREIGN KEY REFERENCES [accounts](account_id),
+  [amount] INT NOT NULL,
+  [timestamp] TIMESTAMP NOT NULL,
+);
+
+GO
+;

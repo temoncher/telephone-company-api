@@ -74,3 +74,12 @@ CREATE TABLE [transactions] (
 
 GO
 ;
+
+-- Create Daytimes table
+CREATE TABLE [daytimes] (
+  [daytime_id] INT IDENTITY(1, 1) PRIMARY KEY,
+  [title] NVARCHAR(20) NOT NULL,
+);
+
+GO
+;

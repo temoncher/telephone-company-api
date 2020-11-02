@@ -80,3 +80,15 @@ VALUES
 
 GO
 ;
+
+-- Seed Daytimes table
+INSERT INTO
+  [daytimes] ([title])
+VALUES
+  (N'Утро'),
+  (N'День'),
+  (N'Вечер'),
+  (N'Ночь');
+
+GO
+;

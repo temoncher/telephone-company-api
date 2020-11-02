@@ -119,3 +119,27 @@ VALUES
   (4, 'Disney Land');
 
 GO
+
+-- Seed DaytimePrices table
+INSERT INTO
+  [daytime_prices]
+  ([price_id], [daytime_id], [price_per_minute])
+VALUES
+  (1, 1, 60),
+  (1, 2, 30),
+  (1, 3, 30),
+  (1, 4, 10),
+  (2, 1, 100),
+  (2, 2, 80),
+  (2, 3, 40),
+  (2, 4, 30),
+  (3, 1, 10),
+  (3, 2, 20),
+  (3, 3, 30),
+  (3, 4, 40),
+  (4, 1, 20),
+  (4, 2, 20),
+  (4, 3, 20),
+  (4, 4, 20);
+
+GO

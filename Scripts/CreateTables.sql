@@ -104,3 +104,16 @@ CREATE TABLE [prices]
 );
 
 GO
+
+-- Create DaytimePrices table
+CREATE TABLE [daytime_prices]
+(
+  [price_id] INT NOT NULL,
+  [daytime_id] INT NOT NULL,
+  [price_per_minute] INT NOT NULL,
+  PRIMARY KEY(price_id, daytime_id),
+  FOREIGN KEY(price_id) REFERENCES [prices](price_id) ON DELETE CASCADE,
+  FOREIGN KEY(daytime_id) REFERENCES [daytimes](daytime_id) ON DELETE CASCADE
+);
+
+GO

@@ -24,7 +24,7 @@ namespace SqlBackend.Controllers
       return Ok(daytimePrices);
     }
 
-    [HttpGet("{price_id}")]
+    [HttpGet("price/{price_id}")]
     public ActionResult<IEnumerable<DaytimePrice>> GetDaytimePricesByPriceId(int price_id)
     {
       var daytimePrices = _repository.GetDaytimePricesByPriceId(price_id);

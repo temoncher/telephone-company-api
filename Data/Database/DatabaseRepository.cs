@@ -43,6 +43,8 @@ namespace SqlBackend.Data
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(createAccountTriggerScript);
       string updateBalanceTriggerScript = ScriptsUtils.GetSqlScript("Triggers\\UpdateBalanceTrigger.sql");
       numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(updateBalanceTriggerScript);
+      string createTransactionAfterCallScript = ScriptsUtils.GetSqlScript("Triggers\\CreateTransactionAfterCall.sql");
+      numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(createTransactionAfterCallScript);
 
       return numberOfAffectedRows;
     }

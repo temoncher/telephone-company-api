@@ -9,6 +9,6 @@ namespace SqlBackend.Models
     [Key]
     public int price_id { get; set; }
     [Required]
-    public int price_per_minute { get; set; }
+    public float price_per_minute { get; set; }
   }
 }

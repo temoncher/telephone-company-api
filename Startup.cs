@@ -83,6 +83,11 @@ namespace SqlBackend
         var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
         options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
       });
+      services.AddDbContext<AccountContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
 
       services.AddControllers();
 
@@ -96,6 +101,7 @@ namespace SqlBackend
       services.AddScoped<IPriceRepository, PriceRepository>();
       services.AddScoped<IDaytimePriceRepository, DaytimePriceRepository>();
       services.AddScoped<ICallRepository, CallRepository>();
+      services.AddScoped<IAccountRepository, AccountRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

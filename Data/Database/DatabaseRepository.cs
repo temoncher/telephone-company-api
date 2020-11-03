@@ -29,6 +29,14 @@ namespace SqlBackend.Data
       return numberOfAffectedRows;
     }
 
+    public int CreateRoles()
+    {
+      string script = ScriptsUtils.GetSqlScript("CreateRoles.sql");
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
+
+      return numberOfAffectedRows;
+    }
+
     public int SetupTriggers()
     {
       string createAccountTriggerScript = ScriptsUtils.GetSqlScript("Triggers\\CreateAccountTrigger.sql");

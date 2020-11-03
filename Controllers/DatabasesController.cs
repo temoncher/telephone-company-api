@@ -24,18 +24,26 @@ namespace SqlBackend.Controllers
       return Ok(databases);
     }
 
-    [HttpPost]
-    public ActionResult<int> CreateDatabase()
+    [HttpPost("tables")]
+    public ActionResult<int> CreateTables()
     {
-      int numberOfAffectedRows = _repository.CreateDatabase();
+      int numberOfAffectedRows = _repository.CreateTables();
 
       return Ok(numberOfAffectedRows);
     }
 
-    [HttpDelete]
-    public ActionResult<int> DropDatabase()
+    [HttpPost("triggers")]
+    public ActionResult<int> SetupTriggers()
     {
-      int numberOfAffectedRows = _repository.DropDatabase();
+      int numberOfAffectedRows = _repository.SetupTriggers();
+
+      return Ok(numberOfAffectedRows);
+    }
+
+    [HttpPost("seed")]
+    public ActionResult<int> Seed()
+    {
+      int numberOfAffectedRows = _repository.Seed();
 
       return Ok(numberOfAffectedRows);
     }

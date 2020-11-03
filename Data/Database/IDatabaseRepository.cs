@@ -6,7 +6,8 @@ namespace SqlBackend.Data
   public interface IDatabaseRepository
   {
     IEnumerable<Database> GetAllDatabases();
-    int CreateDatabase();
-    int DropDatabase();
+    int CreateTables();
+    int SetupTriggers();
+    int Seed();
   }
 }

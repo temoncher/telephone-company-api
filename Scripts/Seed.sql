@@ -1,5 +1,4 @@
 USE [telephone_company]
-GO
 
 -- Seed Organisations table
 INSERT INTO
@@ -12,7 +11,6 @@ VALUES
   (N'KFC'),
   (N'Аквелон');
 
-GO
 
 -- Seed Subscribers table
 INSERT INTO
@@ -47,7 +45,6 @@ VALUES
     'Disney Land'
   );
 
-GO
 
 -- No need to seed Accounts because they will be generated on trigger
 -- Seed TransactionTypes table
@@ -58,7 +55,6 @@ VALUES
   ('INCOME'),
   ('LOSS');
 
-GO
 
 -- Seed Transactions table
 INSERT INTO
@@ -81,7 +77,6 @@ VALUES
   (2, 2, 500),
   (1, 2, 815);
 
-GO
 
 -- Seed Daytimes table
 INSERT INTO
@@ -93,7 +88,6 @@ VALUES
   (N'Вечер'),
   (N'Ночь');
 
-GO
 
 -- Seed Localities table
 INSERT INTO
@@ -105,7 +99,6 @@ VALUES
   ('Brooklyn'),
   ('Disney Land');
 
-GO
 
 -- Seed Prices table
 INSERT INTO
@@ -118,7 +111,6 @@ VALUES
   (3, 'Brooklyn Night'),
   (4, 'Disney Land');
 
-GO
 
 -- Seed DaytimePrices table
 INSERT INTO
@@ -142,7 +134,6 @@ VALUES
   (4, 3, 20),
   (4, 4, 20);
 
-GO
 
 -- Seed Calls table
 INSERT INTO
@@ -170,5 +161,3 @@ VALUES
   (3, 2, 123, '2018-11-30 01:31:02.047'),
   (3, 2, 54, '2018-11-23 21:21:02.047'),
   (3, 2, 64, '2018-11-23 23:10:02.047');
-
-GO

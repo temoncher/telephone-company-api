@@ -1,3 +1,6 @@
+-- Exit [telephone_company] db before drop
+USE [master];
+
 -- Drop database if it is already present
 IF EXISTS(
   SELECT
@@ -10,22 +13,17 @@ WHERE
   DROP DATABASE [telephone_company]
 END
 
-GO
-
 -- Create new database
-CREATE DATABASE [telephone_company]
-GO
+CREATE DATABASE [telephone_company];
 
--- Create Organisations table
 USE [telephone_company];
 
+-- Create Organisations table
 CREATE TABLE [organisations]
 (
   [organisation_id] INT IDENTITY(1, 1) PRIMARY KEY,
   [name] NVARCHAR(50) NOT NULL,
 );
-
-GO
 
 -- Create Subscribers table
 CREATE TABLE [subscribers]
@@ -40,7 +38,6 @@ CREATE TABLE [subscribers]
   FOREIGN KEY(organisation_id) REFERENCES [organisations](organisation_id) ON DELETE CASCADE
 );
 
-GO
 
 -- Create Accounts table
 CREATE TABLE [accounts]
@@ -51,7 +48,6 @@ CREATE TABLE [accounts]
   FOREIGN KEY(subscriber_id) REFERENCES [subscribers](subscriber_id) ON DELETE CASCADE
 );
 
-GO
 
 -- Create TransactionTypes table
 CREATE TABLE [transaction_types]
@@ -60,7 +56,6 @@ CREATE TABLE [transaction_types]
   [title] NVARCHAR(50) NOT NULL,
 );
 
-GO
 
 -- Create Transactions table
 CREATE TABLE [transactions]
@@ -74,7 +69,6 @@ CREATE TABLE [transactions]
   FOREIGN KEY(account_id) REFERENCES [accounts](account_id) ON DELETE CASCADE
 );
 
-GO
 
 -- Create Daytimes table
 CREATE TABLE [daytimes]
@@ -83,7 +77,6 @@ CREATE TABLE [daytimes]
   [title] NVARCHAR(20) NOT NULL,
 );
 
-GO
 
 -- Create Localities table
 CREATE TABLE [localities]
@@ -92,7 +85,6 @@ CREATE TABLE [localities]
   [name] NVARCHAR(50) NOT NULL,
 );
 
-GO
 
 -- Create Prices table
 CREATE TABLE [prices]
@@ -103,7 +95,6 @@ CREATE TABLE [prices]
   FOREIGN KEY(locality_id) REFERENCES [localities](locality_id) ON DELETE CASCADE
 );
 
-GO
 
 -- Create DaytimePrices table
 CREATE TABLE [daytime_prices]
@@ -116,7 +107,6 @@ CREATE TABLE [daytime_prices]
   FOREIGN KEY(daytime_id) REFERENCES [daytimes](daytime_id) ON DELETE CASCADE
 );
 
-GO
 
 -- Create Calls table
 CREATE TABLE [calls]
@@ -131,5 +121,3 @@ CREATE TABLE [calls]
   FOREIGN KEY(daytime_id) REFERENCES [daytimes](daytime_id) ON DELETE SET NULL,
   FOREIGN KEY(locality_id) REFERENCES [localities](locality_id) ON DELETE SET NULL,
 );
-
-GO

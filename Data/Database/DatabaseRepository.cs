@@ -21,17 +21,27 @@ namespace SqlBackend.Data
       return _context.Databases.FromSqlRaw(script);
     }
 
-    public int CreateDatabase()
+    public int CreateTables()
     {
-      string script = ScriptsUtils.GetSqlScript("Databases\\CreateDatabase.sql");
+      string script = ScriptsUtils.GetSqlScript("CreateTables.sql");
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
 
       return numberOfAffectedRows;
     }
 
-    public int DropDatabase()
+    public int SetupTriggers()
     {
-      string script = ScriptsUtils.GetSqlScript("Databases\\DropDatabase.sql");
+      string createAccountTriggerScript = ScriptsUtils.GetSqlScript("Triggers\\CreateAccountTrigger.sql");
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(createAccountTriggerScript);
+      string updateBalanceTriggerScript = ScriptsUtils.GetSqlScript("Triggers\\UpdateBalanceTrigger.sql");
+      numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(updateBalanceTriggerScript);
+
+      return numberOfAffectedRows;
+    }
+
+    public int Seed()
+    {
+      string script = ScriptsUtils.GetSqlScript("Seed.sql");
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
 
       return numberOfAffectedRows;

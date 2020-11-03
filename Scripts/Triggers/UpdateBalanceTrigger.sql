@@ -1,27 +1,10 @@
-USE [telephone_company]
-GO
-
--- Add account for each new subscriber
-CREATE TRIGGER [TR_subscribers_AfterInsert] ON [subscribers]
-AFTER
-INSERT
-  AS BEGIN
-  INSERT INTO
-  [accounts]
-    ([subscriber_id])
-  SELECT
-    [subscriber_id]
-  FROM
-    [INSERTED]
-END;
-
-GO
-
 -- Update account valance after each transaction
 CREATE TRIGGER [TR_transactions_AfterInsert] ON [transactions]
 AFTER
 INSERT
   AS BEGIN
+  SET NOCOUNT ON
+
   DECLARE @newInserted TABLE(
     account_id INT NOT NULL,
     income INT NOT NULL,
@@ -52,4 +35,5 @@ INSERT
   )
 END;
 
-GO
+-- TODO: Add trigger to create transaction after the call
+-- TODO: Add soft delete trigger on something

@@ -22,11 +22,13 @@ namespace SqlBackend.Data
       var subscriberId = new SqlParameter("@subscriberId", call.subscriber_id);
       var localityId = new SqlParameter("@localityId", call.locality_id);
       var duration = new SqlParameter("@duration", call.duration);
+      var daytimeId = new SqlParameter("@daytimeId", call.daytime_id);
 
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
         script,
         subscriberId,
         localityId,
+        daytimeId,
         duration
       );
 

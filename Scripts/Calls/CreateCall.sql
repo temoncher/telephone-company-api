@@ -2,6 +2,6 @@ USE [telephone_company];
 
 INSERT INTO
   [calls]
-  ([subscriber_id], [locality_id], [duration])
+  ([subscriber_id], [locality_id], [daytime_id], [duration])
 VALUES
-  (@subscriberId, @localityId, @duration);
+  (@subscriberId, @localityId, @daytimeId, @duration);

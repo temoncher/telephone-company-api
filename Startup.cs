@@ -1,9 +1,13 @@
+using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 using SqlBackend.Data;
 
 namespace SqlBackend
@@ -27,16 +31,58 @@ namespace SqlBackend
                .AllowAnyHeader();
       }));
 
-      services.AddDbContext<SubscriberContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<OrganisationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<TransactionTypeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<TransactionContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<DaytimeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<LocalityContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<PriceContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<DaytimePriceContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
-      services.AddDbContext<CallContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlBackendAPIConnection")));
+      services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+      services.AddDbContext<SubscriberContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<DatabaseContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<OrganisationContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<TransactionTypeContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<TransactionContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<DaytimeContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<LocalityContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<PriceContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<DaytimePriceContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
+      services.AddDbContext<CallContext>((serviceProvider, options) =>
+      {
+        var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+        options.UseSqlServer(Configuration.GetConnectionString(GetConnection(httpContext)));
+      });
 
       services.AddControllers();
 
@@ -72,6 +118,29 @@ namespace SqlBackend
       {
         endpoints.MapControllers();
       });
+    }
+
+    private string GetConnection(HttpContext httpContext)
+    {
+      var httpRequest = httpContext.Request;
+      string connectionName = "ManagerConnection";
+      try
+      {
+        var auth = AuthenticationHeaderValue.Parse(httpRequest.Headers[HeaderNames.Authorization]);
+
+        if (auth.Parameter == "Super")
+        {
+          connectionName = "SqlBackendAPIConnection";
+        }
+
+        if (auth.Parameter == "Admin")
+        {
+          connectionName = "AdminConnection";
+        }
+      }
+      catch { }
+
+      return connectionName;
     }
   }
 }

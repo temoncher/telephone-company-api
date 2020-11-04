@@ -11,5 +11,6 @@ namespace SqlBackend.Data
     int DeleteDaytimePrice(int price_id, int daytime_id);
     IEnumerable<DaytimePrice> GetDaytimePricesByPriceId(int price_id);
     IEnumerable<DaytimePrice> GetAllDaytimePrices();
+    IEnumerable<DaytimePriceView> GetDaytimePricesTable();
   }
 }

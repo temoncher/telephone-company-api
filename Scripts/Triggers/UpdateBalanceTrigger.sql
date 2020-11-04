@@ -16,8 +16,7 @@ INSERT
     [INSERTED].[account_id],
     SUM(CASE WHEN [transaction_types].[title] = 'INCOME' THEN [INSERTED].[amount] ELSE 0 END) [income],
     SUM(CASE WHEN [transaction_types].[title] = 'LOSS' THEN [INSERTED].[amount] ELSE 0 END) [loss]
-  FROM
-    [INSERTED]
+  FROM [INSERTED]
     JOIN [transaction_types]
     ON [INSERTED].[transaction_type_id] = [transaction_types].[transaction_type_id]
   GROUP BY [INSERTED].[account_id]

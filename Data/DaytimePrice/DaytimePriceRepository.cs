@@ -55,6 +55,14 @@ namespace SqlBackend.Data
       return daytimePrices;
     }
 
+    public IEnumerable<DaytimePriceView> GetDaytimePricesTable()
+    {
+      string script = ScriptsUtils.GetSqlScript("DaytimePrices\\GetDaytimePricesTable.sql");
+      IEnumerable<DaytimePriceView> daytimePrices = _context.DaytimePriceView.FromSqlRaw(script);
+
+      return daytimePrices;
+    }
+
     public IEnumerable<DaytimePrice> GetDaytimePricesByPriceId(int price_id)
     {
       string script = ScriptsUtils.GetSqlScript("DaytimePrices\\GetDaytimePricesByPriceId.sql");

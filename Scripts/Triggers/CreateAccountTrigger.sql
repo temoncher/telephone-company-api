@@ -5,11 +5,8 @@ INSERT
   AS BEGIN
   SET NOCOUNT ON
 
-  INSERT INTO
-  [accounts]
+  INSERT INTO [accounts]
     ([subscriber_id])
-  SELECT
-    [subscriber_id]
-  FROM
-    [INSERTED]
+  SELECT [subscriber_id]
+  FROM [INSERTED]
 END;

@@ -24,6 +24,14 @@ namespace SqlBackend.Controllers
       return Ok(prices);
     }
 
+    [HttpGet("table")]
+    public ActionResult<IEnumerable<PriceView>> GetPricesTable()
+    {
+      var prices = _repository.GetPricesTable();
+
+      return Ok(prices);
+    }
+
     [HttpPost]
     public ActionResult<int> CreatePrice(Price price)
     {

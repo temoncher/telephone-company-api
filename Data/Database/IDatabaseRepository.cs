@@ -7,6 +7,7 @@ namespace SqlBackend.Data
   {
     IEnumerable<Database> GetAllDatabases();
     int CreateTables();
+    int CreateViews();
     int CreateRoles();
     int SetupTriggers();
     int Seed();

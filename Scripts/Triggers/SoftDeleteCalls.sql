@@ -1,3 +1,4 @@
+-- Soft delete call
 CREATE TRIGGER [TR_calls_InsteadOfDelete] ON [calls]
 INSTEAD OF DELETE
 AS BEGIN

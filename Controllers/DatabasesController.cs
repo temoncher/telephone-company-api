@@ -32,6 +32,14 @@ namespace SqlBackend.Controllers
       return Ok(numberOfAffectedRows);
     }
 
+    [HttpPost("views")]
+    public ActionResult<int> CreateViews()
+    {
+      int numberOfAffectedRows = _repository.CreateViews();
+
+      return Ok(numberOfAffectedRows);
+    }
+
     [HttpPost("roles")]
     public ActionResult<int> CreateRoles()
     {

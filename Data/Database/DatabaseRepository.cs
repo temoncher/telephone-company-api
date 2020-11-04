@@ -29,6 +29,16 @@ namespace SqlBackend.Data
       return numberOfAffectedRows;
     }
 
+    public int CreateViews()
+    {
+      string script = ScriptsUtils.GetSqlScript("Views\\PricesGlobalView.sql");
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(script);
+      // string updateBalanceTriggerScript = ScriptsUtils.GetSqlScript("Triggers\\UpdateBalanceTrigger.sql");
+      // numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(updateBalanceTriggerScript);
+
+      return numberOfAffectedRows;
+    }
+
     public int CreateRoles()
     {
       string script = ScriptsUtils.GetSqlScript("CreateRoles.sql");

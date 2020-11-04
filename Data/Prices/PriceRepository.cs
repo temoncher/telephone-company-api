@@ -52,6 +52,14 @@ namespace SqlBackend.Data
       return prices;
     }
 
+    public IEnumerable<PriceView> GetPricesTable()
+    {
+      string script = ScriptsUtils.GetSqlScript("Prices\\GetPricesTable.sql");
+      IEnumerable<PriceView> prices = _context.PriceView.FromSqlRaw(script);
+
+      return prices;
+    }
+
     public async Task<Price> GetPriceById(int id)
     {
       string script = ScriptsUtils.GetSqlScript("Prices\\GetPriceById.sql");

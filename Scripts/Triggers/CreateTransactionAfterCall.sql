@@ -1,4 +1,4 @@
--- Add account for each new subscriber
+-- Add transaction for inserted call
 CREATE TRIGGER [TR_calls_AfterInsert] ON [calls]
 AFTER
 INSERT

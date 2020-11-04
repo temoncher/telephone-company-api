@@ -10,6 +10,7 @@ namespace SqlBackend.Data
     int UpdatePrice(int id, Price price);
     int DeletePrice(int id);
     IEnumerable<Price> GetAllPrices();
+    IEnumerable<PriceView> GetPricesTable();
     Task<Price> GetPriceById(int id);
   }
 }

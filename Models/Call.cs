@@ -15,5 +15,6 @@ namespace SqlBackend.Models
     public int duration { get; set; }
     [Required]
     public DateTime timestamp { get; set; }
+    public DateTime? deleted_at { get; set; }
   }
 }

@@ -35,6 +35,31 @@ namespace SqlBackend.Data
       return numberOfAffectedRows;
     }
 
+    public int DeleteCall(int call_id)
+    {
+      string script = ScriptsUtils.GetSqlScript("Calls\\DeleteCall.sql");
+      var callId = new SqlParameter("@callId", call_id);
+
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
+        script,
+        callId
+      );
+
+      return numberOfAffectedRows;
+    }
+    public int RestoreCall(int call_id)
+    {
+      string script = ScriptsUtils.GetSqlScript("Calls\\RestoreCall.sql");
+      var callId = new SqlParameter("@callId", call_id);
+
+      int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(
+        script,
+        callId
+      );
+
+      return numberOfAffectedRows;
+    }
+
     public IEnumerable<Call> GetAllCalls()
     {
       string script = ScriptsUtils.GetSqlScript("Calls\\GetAllCalls.sql");

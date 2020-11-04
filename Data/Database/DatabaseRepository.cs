@@ -45,6 +45,8 @@ namespace SqlBackend.Data
       numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(updateBalanceTriggerScript);
       string createTransactionAfterCallScript = ScriptsUtils.GetSqlScript("Triggers\\CreateTransactionAfterCall.sql");
       numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(createTransactionAfterCallScript);
+      string softDeleteCallsScript = ScriptsUtils.GetSqlScript("Triggers\\SoftDeleteCalls.sql");
+      numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(softDeleteCallsScript);
 
       return numberOfAffectedRows;
     }

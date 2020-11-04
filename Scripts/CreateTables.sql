@@ -41,7 +41,7 @@ CREATE TABLE [accounts]
 (
   [account_id] INT IDENTITY(1, 1) PRIMARY KEY,
   [subscriber_id] INT NOT NULL,
-  [balance] DOUBLE PRECISION DEFAULT 0,
+  [balance] MONEY DEFAULT 0,
   FOREIGN KEY(subscriber_id) REFERENCES [subscribers](subscriber_id) ON DELETE CASCADE
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE [transactions]
   [transaction_id] INT IDENTITY(1, 1) PRIMARY KEY,
   [transaction_type_id] INT NOT NULL,
   [account_id] INT NOT NULL,
-  [amount] DOUBLE PRECISION NOT NULL,
+  [amount] SMALLMONEY NOT NULL,
   [timestamp] DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY(transaction_type_id) REFERENCES [transaction_types](transaction_type_id) ON DELETE CASCADE,
   FOREIGN KEY(account_id) REFERENCES [accounts](account_id) ON DELETE CASCADE
@@ -98,7 +98,7 @@ CREATE TABLE [daytime_prices]
 (
   [price_id] INT NOT NULL,
   [daytime_id] INT NOT NULL,
-  [price_per_minute] FLOAT NOT NULL,
+  [price_per_minute] SMALLMONEY NOT NULL,
   PRIMARY KEY(price_id, daytime_id),
   FOREIGN KEY(price_id) REFERENCES [prices](price_id) ON DELETE CASCADE,
   FOREIGN KEY(daytime_id) REFERENCES [daytimes](daytime_id) ON DELETE CASCADE
@@ -109,12 +109,13 @@ CREATE TABLE [daytime_prices]
 CREATE TABLE [calls]
 (
   [call_id] INT IDENTITY(1,1) PRIMARY KEY,
-  [subscriber_id] INT NOT NULL,
+  [subscriber_id] INT,
   [daytime_id] INT,
   [locality_id] INT,
   [duration] INT NOT NULL,
   [timestamp] DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY(subscriber_id) REFERENCES [subscribers](subscriber_id) ON DELETE CASCADE,
+  [deleted_at] DATETIME DEFAULT NULL,
+  FOREIGN KEY(subscriber_id) REFERENCES [subscribers](subscriber_id) ON DELETE SET NULL,
   FOREIGN KEY(daytime_id) REFERENCES [daytimes](daytime_id) ON DELETE SET NULL,
   FOREIGN KEY(locality_id) REFERENCES [localities](locality_id) ON DELETE SET NULL,
 );

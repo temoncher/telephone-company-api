@@ -34,6 +34,3 @@ INSERT
   FROM @newInserted
   )
 END;
-
--- TODO: Add trigger to create transaction after the call
--- TODO: Add soft delete trigger on something

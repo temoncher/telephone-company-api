@@ -9,6 +9,6 @@ namespace SqlBackend.Models
     [Required]
     public int subscriber_id { get; set; }
     [Required]
-    public double balance { get; set; }
+    public decimal balance { get; set; }
   }
 }

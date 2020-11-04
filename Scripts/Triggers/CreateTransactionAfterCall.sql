@@ -31,7 +31,7 @@ INSERT
   DECLARE @insertedWithAmount TABLE(
     [account_id] INT NOT NULL,
     [transaction_type_id] INT NOT NULL,
-    [amount] DOUBLE PRECISION NOT NULL
+    [amount] SMALLMONEY NOT NULL
   );
 
   INSERT INTO @insertedWithAccountId
@@ -50,7 +50,7 @@ INSERT
     JOIN [prices] ON [prices].[locality_id] = [@insertedWithTransactionTypeId].[locality_id]
 
   INSERT INTO @insertedWithAmount
-  SELECT [account_id], [transaction_type_id], [amount] = CAST([duration] AS FLOAT) / 60 * [price_per_minute]
+  SELECT [account_id], [transaction_type_id], [amount] = CAST([duration] AS REAL) / 60 * [price_per_minute]
   FROM @insertedWithPriceId
     JOIN [daytime_prices] ON [daytime_prices].[price_id] = [@insertedWithPriceId].[price_id] AND [daytime_prices].[daytime_id] = [@insertedWithPriceId].[daytime_id]
 

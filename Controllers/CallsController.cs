@@ -47,5 +47,21 @@ namespace SqlBackend.Controllers
 
       return Ok(numberOfAffectedRows);
     }
+
+    [HttpDelete("{call_id}")]
+    public ActionResult<int> DeleteCall(int call_id)
+    {
+      int numberOfAffectedRows = _repository.DeleteCall(call_id);
+
+      return Ok(numberOfAffectedRows);
+    }
+
+    [HttpPut("{call_id}")]
+    public ActionResult<int> RestoreCall(int call_id)
+    {
+      int numberOfAffectedRows = _repository.RestoreCall(call_id);
+
+      return Ok(numberOfAffectedRows);
+    }
   }
 }

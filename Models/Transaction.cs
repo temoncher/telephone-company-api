@@ -12,7 +12,7 @@ namespace SqlBackend.Models
     [Required]
     public int account_id { get; set; }
     [Required]
-    public double amount { get; set; }
+    public decimal amount { get; set; }
     public DateTime timestamp { get; set; }
   }
 }

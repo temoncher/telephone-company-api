@@ -18,7 +18,8 @@ INSERT
     SUM(CASE WHEN [transaction_types].[title] = 'LOSS' THEN [INSERTED].[amount] ELSE 0 END) [loss]
   FROM
     [INSERTED]
-    JOIN [transaction_types] ON [INSERTED].[transaction_type_id] = [transaction_types].[transaction_type_id]
+    JOIN [transaction_types]
+    ON [INSERTED].[transaction_type_id] = [transaction_types].[transaction_type_id]
   GROUP BY [INSERTED].[account_id]
 
   UPDATE

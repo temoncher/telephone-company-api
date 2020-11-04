@@ -37,22 +37,27 @@ INSERT
   INSERT INTO @insertedWithAccountId
   SELECT [locality_id], [daytime_id], [duration], [account_id]
   FROM [INSERTED]
-    JOIN [accounts] ON [INSERTED].[subscriber_id] = [accounts].[subscriber_id]
+    JOIN [accounts]
+    ON [INSERTED].[subscriber_id] = [accounts].[subscriber_id]
 
   INSERT INTO @insertedWithTransactionTypeId
   SELECT [locality_id], [daytime_id], [duration], [account_id], [transaction_type_id]
   FROM @insertedWithAccountId
-    JOIN [transaction_types] ON [transaction_types].[title] = 'LOSS'
+    JOIN [transaction_types]
+    ON [transaction_types].[title] = 'LOSS'
 
   INSERT INTO @insertedWithPriceId
   SELECT [daytime_id], [duration], [account_id], [transaction_type_id], [price_id]
   FROM @insertedWithTransactionTypeId
-    JOIN [prices] ON [prices].[locality_id] = [@insertedWithTransactionTypeId].[locality_id]
+    JOIN [prices]
+    ON [prices].[locality_id] = [@insertedWithTransactionTypeId].[locality_id]
 
   INSERT INTO @insertedWithAmount
   SELECT [account_id], [transaction_type_id], [amount] = CAST([duration] AS REAL) / 60 * [price_per_minute]
   FROM @insertedWithPriceId
-    JOIN [daytime_prices] ON [daytime_prices].[price_id] = [@insertedWithPriceId].[price_id] AND [daytime_prices].[daytime_id] = [@insertedWithPriceId].[daytime_id]
+    JOIN [daytime_prices]
+    ON [daytime_prices].[price_id] = [@insertedWithPriceId].[price_id]
+      AND [daytime_prices].[daytime_id] = [@insertedWithPriceId].[daytime_id]
 
   INSERT INTO [transactions]
     ([account_id], [transaction_type_id], [amount])

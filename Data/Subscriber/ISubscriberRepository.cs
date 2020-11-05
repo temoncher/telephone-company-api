@@ -10,6 +10,7 @@ namespace SqlBackend.Data
     int UpdateSubscriber(int id, Subscriber subscriber);
     int DeleteSubscriber(int id);
     IEnumerable<Subscriber> GetAllSubscribers();
+    IEnumerable<SubscriberView> GetSubscribersTable();
     Task<Subscriber> GetSubscriberById(int id);
   }
 }

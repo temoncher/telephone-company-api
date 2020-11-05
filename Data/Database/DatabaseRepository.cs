@@ -35,6 +35,8 @@ namespace SqlBackend.Data
       int numberOfAffectedRows = _context.Database.ExecuteSqlRaw(PricesGlobalViewScript);
       string daytimePricesGlobalViewScript = ScriptsUtils.GetSqlScript("Views\\DaytimePricesGlobalView.sql");
       numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(daytimePricesGlobalViewScript);
+      string subscribersGlobalViewScript = ScriptsUtils.GetSqlScript("Views\\SubscribersGlobalView.sql");
+      numberOfAffectedRows = numberOfAffectedRows + _context.Database.ExecuteSqlRaw(subscribersGlobalViewScript);
 
       return numberOfAffectedRows;
     }

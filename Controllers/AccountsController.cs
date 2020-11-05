@@ -15,6 +15,7 @@ namespace SqlBackend.Controllers
     {
       _repository = repository;
     }
+    // TODO: Add readonly table
 
     [HttpGet]
     public ActionResult<IEnumerable<Account>> GetAllAccounts()

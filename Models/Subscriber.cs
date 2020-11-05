@@ -3,7 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SqlBackend.Models
 {
-  public class Subscriber
+  public interface ISubscriber {
+    int subscriber_id { get; set; }
+    int organisation_id { get; set; }
+    int inn { get; set; }
+    string first_name { get; set; }
+    string last_name { get; set; }
+    string patronymic { get; set; }
+    string adress { get; set; }
+  }
+  public class Subscriber: ISubscriber
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,5 +31,17 @@ namespace SqlBackend.Models
     public string patronymic { get; set; }
     [MaxLength(50)]
     public string adress { get; set; }
+  }
+  public class SubscriberView: ISubscriber
+  {
+    public int subscriber_id { get; set; }
+    public int inn { get; set; }
+    public string first_name { get; set; }
+    public string last_name { get; set; }
+    public string patronymic { get; set; }
+    public string adress { get; set; }
+    public int organisation_id { get; set; }
+    public string organisation_name { get; set; }
+
   }
 }

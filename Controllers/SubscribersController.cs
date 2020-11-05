@@ -24,6 +24,14 @@ namespace SqlBackend.Controllers
       return Ok(subscribers);
     }
 
+    [HttpGet("table")]
+    public ActionResult<IEnumerable<SubscriberView>> GetSubscribersTable()
+    {
+      var subscribers = _repository.GetSubscribersTable();
+
+      return Ok(subscribers);
+    }
+
     [HttpPost]
     public ActionResult<int> CreateSubscriber(Subscriber subscriber)
     {

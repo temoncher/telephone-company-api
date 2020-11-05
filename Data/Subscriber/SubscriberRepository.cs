@@ -48,6 +48,14 @@ namespace SqlBackend.Data
       return subscribers;
     }
 
+    public IEnumerable<SubscriberView> GetSubscribersTable()
+    {
+      string script = ScriptsUtils.GetSqlScript("Subscribers\\GetSubscribersTable.sql");
+      IEnumerable<SubscriberView> subscribers = _context.SubscriberView.FromSqlRaw(script);
+
+      return subscribers;
+    }
+
     public async Task<Subscriber> GetSubscriberById(int id)
     {
       string script = ScriptsUtils.GetSqlScript("Subscribers\\GetSubscriberById.sql");

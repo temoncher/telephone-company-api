@@ -24,6 +24,14 @@ namespace SqlBackend.Controllers
       return Ok(transactions);
     }
 
+    [HttpGet("table")]
+    public ActionResult<IEnumerable<TransactionView>> GetTransactionsTable()
+    {
+      var transactions = _repository.GetTransactionsTable();
+
+      return Ok(transactions);
+    }
+
     [HttpPost]
     public ActionResult<int> CreateTransaction(Transaction transaction)
     {

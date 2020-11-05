@@ -5,10 +5,7 @@ namespace SqlBackend.Data
 {
   public class DatabaseContext : DbContext
   {
-    public DatabaseContext(DbContextOptions<DatabaseContext> opt) : base(opt)
-    {
-
-    }
+    public DatabaseContext(DbContextOptions<DatabaseContext> opt) : base(opt) { }
 
     public DbSet<Database> Databases { get; set; }
   }

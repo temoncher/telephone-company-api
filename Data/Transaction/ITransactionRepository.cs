@@ -8,6 +8,7 @@ namespace SqlBackend.Data
   {
     int CreateTransaction(Transaction Transaction);
     IEnumerable<Transaction> GetAllTransactions();
+    IEnumerable<TransactionView> GetTransactionsTable();
     Task<Transaction> GetTransactionById(int id);
   }
 }

@@ -6,5 +6,6 @@ namespace SqlBackend.Data
   public interface IAccountRepository
   {
     IEnumerable<Account> GetAllAccounts();
+    IEnumerable<AccountView> GetAccountsTable();
   }
 }

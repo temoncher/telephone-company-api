@@ -23,5 +23,13 @@ namespace SqlBackend.Data
 
       return accounts;
     }
+
+    public IEnumerable<AccountView> GetAccountsTable()
+    {
+      string script = ScriptsUtils.GetSqlScript("Accounts\\GetAccountsTable.sql");
+      IEnumerable<AccountView> accounts = _context.AccountView.FromSqlRaw(script);
+
+      return accounts;
+    }
   }
 }

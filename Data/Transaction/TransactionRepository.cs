@@ -41,6 +41,14 @@ namespace SqlBackend.Data
       return transactions;
     }
 
+    public IEnumerable<TransactionView> GetTransactionsTable()
+    {
+      string script = ScriptsUtils.GetSqlScript("Transactions\\GetTransactionsTable.sql");
+      IEnumerable<TransactionView> transactions = _context.TransactionView.FromSqlRaw(script);
+
+      return transactions;
+    }
+
     public async Task<Transaction> GetTransactionById(int id)
     {
       string script = ScriptsUtils.GetSqlScript("Transactions\\GetTransactionById.sql");

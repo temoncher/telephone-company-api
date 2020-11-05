@@ -1,6 +1,7 @@
 USE [telephone_company];
 
 INSERT INTO
-  [daytimes] ([title])
+  [daytimes]
+    ([title])
 VALUES
   (@title);

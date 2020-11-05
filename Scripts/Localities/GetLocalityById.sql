@@ -2,7 +2,6 @@ USE [telephone_company];
 
 SELECT
   *
-FROM
-  [localities]
+FROM [localities]
 WHERE
   [locality_id] = @localityId

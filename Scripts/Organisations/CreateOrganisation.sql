@@ -1,6 +1,7 @@
 USE [telephone_company];
 
 INSERT INTO
-  [organisations] ([name])
+  [organisations]
+    ([name])
 VALUES
   (@name);

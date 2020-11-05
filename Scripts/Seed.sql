@@ -3,7 +3,7 @@ USE [telephone_company]
 -- Seed Organisations table
 INSERT INTO
   [organisations]
-  ([name])
+    ([name])
 VALUES
   (N'ЯрГУ им. П.Г. Демидова'),
   (N'Тензор'),
@@ -15,14 +15,14 @@ VALUES
 -- Seed Subscribers table
 INSERT INTO
   [subscribers]
-  (
-  [organisation_id],
-  [inn],
-  [first_name],
-  [last_name],
-  [patronymic],
-  [adress]
-  )
+    (
+      [organisation_id],
+      [inn],
+      [first_name],
+      [last_name],
+      [patronymic],
+      [adress]
+    )
 VALUES
   (3, 111, 'John', 'Doe', NULL, 'Brooklyn'),
   (
@@ -50,7 +50,7 @@ VALUES
 -- Seed TransactionTypes table
 INSERT INTO
   [transaction_types]
-  ([title])
+    ([title])
 VALUES
   ('INCOME'),
   ('LOSS');
@@ -59,12 +59,12 @@ VALUES
 -- Seed Transactions table
 INSERT INTO
   [transactions]
-  (
-    [transaction_type_id],
-    [account_id],
-    [amount],
-    [timestamp]
-  )
+    (
+      [transaction_type_id],
+      [account_id],
+      [amount],
+      [timestamp]
+    )
 VALUES
   (1, 1, 100, '2020-04-20 13:10:02.047'),
   (1, 1, 100, '2020-05-22 12:11:02.047'),
@@ -82,7 +82,7 @@ VALUES
 -- Seed Daytimes table
 INSERT INTO
   [daytimes]
-  ([title])
+    ([title])
 VALUES
   (N'Утро'),
   (N'День'),
@@ -93,7 +93,7 @@ VALUES
 -- Seed Localities table
 INSERT INTO
   [localities]
-  ([name])
+    ([name])
 VALUES
   (N'Ярославль'),
   (N'Москва'),
@@ -104,7 +104,7 @@ VALUES
 -- Seed Prices table
 INSERT INTO
   [prices]
-  ([locality_id], [title])
+    ([locality_id], [title])
 VALUES
   (1, 'Best price'),
   (1, N'Прайс Надежный'),
@@ -116,7 +116,11 @@ VALUES
 -- Seed DaytimePrices table
 INSERT INTO
   [daytime_prices]
-  ([price_id], [daytime_id], [price_per_minute])
+    (
+      [price_id],
+      [daytime_id],
+      [price_per_minute]
+    )
 VALUES
   (1, 1, 60),
   (1, 2, 30),
@@ -139,13 +143,13 @@ VALUES
 -- Seed Calls table
 INSERT INTO
   [calls]
-  (
-    [subscriber_id],
-    [locality_id],
-    [duration],
-    [daytime_id],
-    [timestamp]
-  )
+    (
+      [subscriber_id],
+      [locality_id],
+      [duration],
+      [daytime_id],
+      [timestamp]
+    )
 VALUES
   (1, 1, 60, 1, '2020-04-30 13:10:02.047'),
   (1, 1, 33, 2, '2020-04-30 12:11:02.047'),

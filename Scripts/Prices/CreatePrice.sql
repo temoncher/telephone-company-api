@@ -2,6 +2,6 @@ USE [telephone_company];
 
 INSERT INTO
   [prices]
-  ([locality_id], [title])
+    ([locality_id], [title])
 VALUES
   (@localityId, @title);

@@ -2,7 +2,6 @@ USE [telephone_company];
 
 SELECT
   *
-FROM
-  [calls]
+FROM [calls]
 WHERE
   [subscriber_id] = @subscriberId

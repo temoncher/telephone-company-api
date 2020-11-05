@@ -2,5 +2,4 @@ USE [telephone_company];
 
 SELECT
   *
-FROM
-  [daytime_prices]
+FROM [daytime_prices]

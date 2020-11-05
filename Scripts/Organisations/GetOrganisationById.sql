@@ -2,7 +2,6 @@ USE [telephone_company];
 
 SELECT
   *
-FROM
-  [organisations]
+FROM [organisations]
 WHERE
   [organisation_id] = @organisationId

@@ -1,6 +1,4 @@
 USE [telephone_company];
 
-SELECT
-  *
-FROM
-  [prices]
+SELECT *
+FROM [prices]

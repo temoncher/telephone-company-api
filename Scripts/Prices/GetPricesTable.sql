@@ -1,4 +1,5 @@
 USE [telephone_company];
 
-SELECT *
+SELECT
+  *
 FROM [V_prices_global]

@@ -1,5 +1,7 @@
 USE [telephone_company];
 
-SELECT *
+SELECT
+  *
 FROM [prices]
-WHERE [price_id] = @priceId
+WHERE
+  [price_id] = @priceId

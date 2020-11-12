@@ -7,6 +7,7 @@ INSERT
 
   DECLARE @insertedWithAccountId TABLE(
     [locality_id] INT NOT NULL,
+    [call_id] INT NOT NULL,
     [daytime_id] INT NOT NULL,
     [duration] INT NOT NULL,
     [account_id] INT NOT NULL
@@ -14,6 +15,7 @@ INSERT
 
   DECLARE @insertedWithTransactionTypeId TABLE(
     [locality_id] INT NOT NULL,
+    [call_id] INT NOT NULL,
     [daytime_id] INT NOT NULL,
     [duration] INT NOT NULL,
     [account_id] INT NOT NULL,
@@ -22,6 +24,7 @@ INSERT
 
   DECLARE @insertedWithPriceId TABLE(
     [daytime_id] INT NOT NULL,
+    [call_id] INT NOT NULL,
     [duration] INT NOT NULL,
     [account_id] INT NOT NULL,
     [transaction_type_id] INT NOT NULL,
@@ -30,13 +33,19 @@ INSERT
 
   DECLARE @insertedWithAmount TABLE(
     [account_id] INT NOT NULL,
+    [call_id] INT NOT NULL,
     [transaction_type_id] INT NOT NULL,
     [amount] SMALLMONEY NOT NULL
   );
 
   INSERT INTO
     @insertedWithAccountId
-  SELECT [locality_id], [daytime_id], [duration], [account_id]
+  SELECT
+    [locality_id],
+    [call_id],
+    [daytime_id],
+    [duration],
+    [account_id]
   FROM [INSERTED]
     JOIN [accounts]
     ON [INSERTED].[subscriber_id] = [accounts].[subscriber_id]
@@ -45,6 +54,7 @@ INSERT
     @insertedWithTransactionTypeId
   SELECT
     [locality_id],
+    [call_id],
     [daytime_id],
     [duration],
     [account_id],
@@ -57,6 +67,7 @@ INSERT
     @insertedWithPriceId
   SELECT
     [daytime_id],
+    [call_id],
     [duration],
     [account_id],
     [transaction_type_id],
@@ -69,6 +80,7 @@ INSERT
     @insertedWithAmount
   SELECT
     [account_id],
+    [call_id],
     [transaction_type_id],
     [amount] = CAST([duration] AS REAL) / 60 * [price_per_minute]
   FROM @insertedWithPriceId
@@ -80,11 +92,13 @@ INSERT
     [transactions]
       (
         [account_id],
+        [call_id],
         [transaction_type_id],
         [amount]
       )
   SELECT
     [account_id],
+    [call_id],
     [transaction_type_id],
     [amount]
   FROM @insertedWithAmount

@@ -11,12 +11,40 @@ VALUES
   (N'KFC'),
   (N'Аквелон');
 
+-- Seed TransactionTypes table
+INSERT INTO
+  [transaction_types]
+    ([title])
+VALUES
+  ('INCOME'),
+  ('LOSS');
+
+-- Seed Daytimes table
+INSERT INTO
+  [daytimes]
+    ([title])
+VALUES
+  (N'Утро'),
+  (N'День'),
+  (N'Вечер'),
+  (N'Ночь');
+
+-- Seed Localities table
+INSERT INTO
+  [localities]
+    ([name])
+VALUES
+  (N'Ярославль'),
+  (N'Москва'),
+  ('Brooklyn'),
+  ('Disney Land');
 
 -- Seed Subscribers table
 INSERT INTO
   [subscribers]
     (
       [organisation_id],
+      [locality_id],
       [inn],
       [first_name],
       [last_name],
@@ -24,20 +52,22 @@ INSERT INTO
       [adress]
     )
 VALUES
-  (3, 111, 'John', 'Doe', NULL, 'Brooklyn'),
+  (3, 1, 111, 'John', 'Doe', NULL, 'Brooklyn'),
   (
     1,
+    2,
     112,
     N'Артем',
     N'Баранов',
     N'Сергеевич',
     N'Ярославль'
   ),
-  (3, 113, N'Мини', N'Маус', NULL, 'Disney Land'),
-  (3, 114, N'Стивен', N'Джобс', NULL, NULL),
-  (4, 115, 'Bill', 'Gates', NULL, NULL),
+  (3, 2, 113, N'Мини', N'Маус', NULL, 'Disney Land'),
+  (3, 1, 114, N'Стивен', N'Джобс', NULL, NULL),
+  (4, NULL, 115, 'Bill', 'Gates', NULL, NULL),
   (
     3,
+    NULL,
     116,
     N'Микки',
     N'Маус',
@@ -47,13 +77,6 @@ VALUES
 
 
 -- No need to seed Accounts because they will be generated on trigger
--- Seed TransactionTypes table
-INSERT INTO
-  [transaction_types]
-    ([title])
-VALUES
-  ('INCOME'),
-  ('LOSS');
 
 
 -- Seed Transactions table
@@ -77,29 +100,6 @@ VALUES
   (1, 2, 300, '2019-06-25 20:00:02.047'),
   (1, 2, 500, '2019-05-21 23:10:02.047'),
   (1, 2, 815, '2018-04-23 23:10:02.047');
-
-
--- Seed Daytimes table
-INSERT INTO
-  [daytimes]
-    ([title])
-VALUES
-  (N'Утро'),
-  (N'День'),
-  (N'Вечер'),
-  (N'Ночь');
-
-
--- Seed Localities table
-INSERT INTO
-  [localities]
-    ([name])
-VALUES
-  (N'Ярославль'),
-  (N'Москва'),
-  ('Brooklyn'),
-  ('Disney Land');
-
 
 -- Seed Prices table
 INSERT INTO
@@ -138,7 +138,6 @@ VALUES
   (4, 2, 20),
   (4, 3, 20),
   (4, 4, 20);
-
 
 -- Seed Calls table
 INSERT INTO

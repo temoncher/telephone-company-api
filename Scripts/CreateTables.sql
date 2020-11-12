@@ -61,7 +61,7 @@ CREATE TABLE [transactions]
   [transaction_type_id] INT NOT NULL,
   [account_id] INT NOT NULL,
   [amount] SMALLMONEY NOT NULL,
-  [timestamp] DATETIME DEFAULT CURRENT_TIMESTAMP,
+  [created_at] DATETIME DEFAULT GETDATE(),
   FOREIGN KEY(transaction_type_id) REFERENCES [transaction_types](transaction_type_id) ON DELETE CASCADE,
   FOREIGN KEY(account_id) REFERENCES [accounts](account_id) ON DELETE CASCADE
 );
@@ -113,7 +113,7 @@ CREATE TABLE [calls]
   [daytime_id] INT,
   [locality_id] INT,
   [duration] INT NOT NULL,
-  [timestamp] DATETIME DEFAULT CURRENT_TIMESTAMP,
+  [created_at] DATETIME DEFAULT GETDATE(),
   [deleted_at] DATETIME DEFAULT NULL,
   FOREIGN KEY(subscriber_id) REFERENCES [subscribers](subscriber_id) ON DELETE SET NULL,
   FOREIGN KEY(daytime_id) REFERENCES [daytimes](daytime_id) ON DELETE SET NULL,

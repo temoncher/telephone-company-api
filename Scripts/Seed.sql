@@ -63,7 +63,7 @@ INSERT INTO
       [transaction_type_id],
       [account_id],
       [amount],
-      [timestamp]
+      [created_at]
     )
 VALUES
   (1, 1, 100, '2020-04-20 13:10:02.047'),
@@ -148,7 +148,7 @@ INSERT INTO
       [locality_id],
       [duration],
       [daytime_id],
-      [timestamp]
+      [created_at]
     )
 VALUES
   (1, 1, 60, 1, '2020-04-30 13:10:02.047'),

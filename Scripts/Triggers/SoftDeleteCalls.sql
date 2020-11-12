@@ -7,7 +7,7 @@ AS BEGIN
   UPDATE
     [calls]
   SET
-    [deleted_at] = CURRENT_TIMESTAMP
+    [deleted_at] = GETDATE()
   WHERE
     [call_id] IN (
       SELECT [call_id]

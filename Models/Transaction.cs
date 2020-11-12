@@ -9,7 +9,7 @@ namespace SqlBackend.Models
     int transaction_type_id { get; set; }
     int account_id { get; set; }
     decimal amount { get; set; }
-    DateTime timestamp { get; set; }
+    DateTime created_at { get; set; }
   }
   public class Transaction : ITransaction
   {
@@ -21,13 +21,13 @@ namespace SqlBackend.Models
     public int account_id { get; set; }
     [Required]
     public decimal amount { get; set; }
-    public DateTime timestamp { get; set; }
+    public DateTime created_at { get; set; }
   }
   public class TransactionView : ITransaction
   {
     public int transaction_id { get; set; }
     public decimal amount { get; set; }
-    public DateTime timestamp { get; set; }
+    public DateTime created_at { get; set; }
     public int account_id { get; set; }
     public string subscriber_full_name { get; set; }
     public int transaction_type_id { get; set; }

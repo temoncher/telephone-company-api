@@ -3,7 +3,7 @@ AS
 SELECT
   [transaction_id],
   [amount],
-  [timestamp],
+  [created_at],
   [V_accounts_global].[account_id],
   [V_accounts_global].[subscriber_full_name],
   [transaction_types].[transaction_type_id],

@@ -1,3 +1,6 @@
+-- Task: 20, e)
+-- Вывести всех должников с адресом, суммой долга и суммой штрафа
+
 USE [telephone_company]
 
 DECLARE @subscribersWithDebt TABLE(

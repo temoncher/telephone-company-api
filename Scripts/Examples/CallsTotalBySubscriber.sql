@@ -1,3 +1,6 @@
+-- Task: 20, a)
+-- Для каждого абонента вывести количество звонков, сделанных им с начала текущего года, и их суммарную стоимость
+
 USE [telephone_company]
 
 DECLARE @callsWithCost TABLE(
@@ -12,11 +15,8 @@ SELECT
 	[calls].[call_id],
 	[transactions].[amount]
 FROM [calls]
-JOIN [transactions] ON [calls].[call_id] = [transactions].[call_id]
+	JOIN [transactions] ON [calls].[call_id] = [transactions].[call_id]
 WHERE YEAR([calls].[created_at]) = YEAR(GETDATE())
-
-SELECT *
-FROM @callsWithCost
 
 DECLARE @aggregated TABLE(
 	[subscriber_id] INT NOT NULL,
